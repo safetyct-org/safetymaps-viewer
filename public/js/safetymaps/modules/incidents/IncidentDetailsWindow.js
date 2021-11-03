@@ -933,8 +933,8 @@ IncidentDetailsWindow.prototype.getXmlIncidentHtml = function(incident, showInze
 
 IncidentDetailsWindow.prototype.calculateETA = function (ETA, fullName) {
     if (ETA) {
-        var eta = ETA.match(/\d+/g).map(Number)[0];
-        var minutesToRide = (eta - new Date().getTime()) / 60000;
+        //var eta = ETA.match(/\d+/g).map(Number)[0];
+        var minutesToRide = (ETA - new Date().getTime()) / 60000;
         minutesToRide = Math.round(minutesToRide);
         //minutesToRide = 10;
         if (minutesToRide > 1 && minutesToRide <= 99) {
