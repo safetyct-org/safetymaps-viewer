@@ -290,7 +290,7 @@ safetymaps.vrh.Dbks.prototype.createLayers = function() {
             }, {
                 context: {
                     fillOpacity: function(feature) {
-                        var opacity = 1;
+                        var opacity = 0.5;
                         $.each(me.luchtfotoLayers, function(i, l) {
                             if(l.getVisibility()) {
                                 opacity = 0.3;
