@@ -424,13 +424,17 @@ OpenLayers.Control.SelectFeature.prototype.unselectAll = function(options) {
 dbkjs.util = {
     layersLoading: [],
     modalPopupStore: {},
+    isHandleingFeatureInfo: false,
     onClick: function (e) {
         $('#wmsclickpanel').hide();
+        dbkjs.util.isHandleingFeatureInfo === false
         console.log("onclick ", e.type, e.xy);
         //Check to see if a layer is required by a module and has getfeatureinfo set
         $.each(dbkjs.map.layers, function (lay_index, lay) {
             if (lay.visibility && lay.dbkjsParent && lay.dbkjsParent.getfeatureinfo) {
-                lay.dbkjsParent.getfeatureinfo(e);
+                if (dbkjs.util.isHandleingFeatureInfo === false) {
+                    lay.dbkjsParent.getfeatureinfo(e);
+                }
             }
         });
         $(dbkjs).trigger("mapClicked");

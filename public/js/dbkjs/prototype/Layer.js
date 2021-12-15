@@ -288,9 +288,9 @@ dbkjs.Layer = dbkjs.Class({
                     },
                     crossDomain: true
                 }).done(function(result) {
-                    if (dbkjs.modules.kro && dbkjs.modules.kro.shouldShowKroForMapLayer(layerName)) {
+                    if (dbkjs.modules.kro && dbkjs.modules.kro.shouldShowKroForMapLayer(layerName) && dbkjs.util.isHandleingFeatureInfo === false) {
                         dbkjs.modules.kro.getBagPandIdFromLayerFeatureAndShowPopup(result);
-                    } else {
+                    } else if (dbkjs.util.isHandleingFeatureInfo === false) {
                         _obj.panel(result, layerName);
                     }
                 });
@@ -310,6 +310,7 @@ dbkjs.Layer = dbkjs.Class({
         features = g.read($.parseXML(response));
         console.log("Feature info for layer "+ layerName + ": "+ features.length + " features returned");//, response.responseText);
         if (features.length > 0) {
+            dbkjs.util.isHandleingFeatureInfo === true
             var title = layerName.split("\\");
             $('#vectorclickpanel_h').html('<span class="h4"><i class="fa fa-info-circle"></i>&nbsp;' + title[title.length-1] + '</span>');
             var html = '<div class="table-responsive"><table class="table table-hover">';
