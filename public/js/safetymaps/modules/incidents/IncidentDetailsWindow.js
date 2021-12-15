@@ -713,7 +713,7 @@ IncidentDetailsWindow.prototype.getIncidentHtmlFalck = function(incident, showIn
                 html += ", ";
             }
             var eta ="";
-            if(!compareMode && inzet.ETA && inzet.ETA.length > 0){
+            if(!compareMode && inzet.StatusCode === '4' && inzet.ETA && inzet.ETA.length > 0){
                 eta = me.calculateETA(inzet.ETA,false);
             }
 
