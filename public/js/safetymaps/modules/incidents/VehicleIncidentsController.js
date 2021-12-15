@@ -727,7 +727,7 @@ VehicleIncidentsController.prototype.showStatusVrhAGS = function() {
 
             switch(code) {
                 case "UT": code = "UG"; break;
-                case "KZ": code = "OK"; break;
+                //case "KZ": code = "OK"; break;
                 case "IR": code = "NI"; break;
             }
 
