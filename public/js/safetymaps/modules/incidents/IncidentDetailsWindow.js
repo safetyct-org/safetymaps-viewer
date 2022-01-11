@@ -740,7 +740,7 @@ IncidentDetailsWindow.prototype.getIncidentHtmlFalck = function(incident, showIn
             html += "<td align='right'>" + (inzet.InzetRol ? inzet.InzetRol : "") + "</td>";
             html += "<td>" + inzet.Roepnaam + "</td>";
             html += "<td>" + (inzet.BrwKazerne ? inzet.BrwKazerne : "") + "</td>";
-            html += "<td>" + (!compareMode && inzet.ETA && inzet.ETA.length > 0 ? me.calculateETA(inzet.ETA, true) : "") + "</td>";
+            html += "<td>" + (!compareMode && inzet.StatusCode === '4' && inzet.ETA && inzet.ETA.length > 0 ? me.calculateETA(inzet.ETA, true) : "") + "</td>";
             html += "</tr>";
         });
         html += '</table></td></tr>';
@@ -934,7 +934,7 @@ IncidentDetailsWindow.prototype.getXmlIncidentHtml = function(incident, showInze
 IncidentDetailsWindow.prototype.calculateETA = function (ETA, fullName) {
     if (ETA) {
         //var eta = ETA.match(/\d+/g).map(Number)[0];
-        var minutesToRide = (new Date(ETA) - new Date().getTime()) / 60000;
+        var minutesToRide = (new moment(ETA) - new Date().getTime()) / 60000;
         minutesToRide = Math.round(minutesToRide);
         //minutesToRide = 10;
         if (minutesToRide > 1 && minutesToRide <= 99) {
